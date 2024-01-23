@@ -11,9 +11,10 @@ var fivePm = $("hour-17");
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-// var rootEl = $("#root");
 
 $(function () {
+	var kStartHour = 9;
+	var kEndHour = 17;
 	// TODO: Add a listener for click events on the save button. This code should
 	// use the id in the containing time-block as a key to save the user input in
 	// local storage. HINT: What does `this` reference in the click listener
@@ -35,4 +36,13 @@ $(function () {
 	//Code to display the current date in the header of the page.
 	var today = dayjs();
 	$("#currentDay").text(today.format("dddd, MMM D, YYYY"));
+
+	function createTimeBlock(hour, relativeTime) {
+		var element = null;
+		//create HTML for timeblock. Use hour to change ids, data attributes and text content
+
+		return element;
+	}
+
+	function renderTimeBlocks(startHour, endHour, rootEl) {}
 });
