@@ -1,13 +1,3 @@
-var nineAm = $("hour-9");
-var tenAm = $("hour-10");
-var elevenAm = $("hour-11");
-var twelveAm = $("hour-12");
-var onePm = $("hour-13");
-var twoPm = $("hour-14");
-var threePm = $("hour-15");
-var fourPm = $("hour-16");
-var fivePm = $("hour-17");
-
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
