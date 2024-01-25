@@ -2,7 +2,7 @@
 
 ## Description
 
-An application that challenges the user with a timed quiz on Javascript fundamentals.
+An application that allows the user to schedule their day and be informed if events are in the past, present, or future.
 
 ## Table of Contents
 
@@ -12,23 +12,23 @@ An application that challenges the user with a timed quiz on Javascript fundamen
 
 ## Introduction
 
-I would like a quiz to help sharpen my Javascript knowledge.
+The client has asked for a daily planner for a 9-5 workday.
 
 ## Problem
 
-I would like a fun way to solidify my knowledge of Javascript. Gamifying learning is an effective way to learn and keep an interest in the subject matter.
+The client would like to be able to see a schedule of their day and make events, or "to-dos". The client would also like some color coding to quickly see what the current hour is and which hours are in the past and which are upcoming.
 
 ## Solution
 
-I created a game using Javascript that asks a series of questions, informs me if the answer I chose was correct or incorrect, and allows me to save my highscore.
+I created a daily planner which shows the current hour highlighted in one color, then past hours in a second color, and future hours in a third color. The planner also allows for saving things as events in each hour timeslot.
 
-![Screenshot of the game](./assets/screenshot.png)
+![Screenshot of the planner](./assets/screenshot.png)
 
 [Link to the deployed application](https://ktetsuyama.github.io/Code_Quiz/)
 
 ## Credits
 
-I collaborated with George Schultz and John Young to troubleshoot any bugs that I had during development of this application. George helped me understand how to put the questions, choices, and answers in an array that can be queried within my game code. John Young helped me understand the code that renders the question on screen and renders the answer buttons. I also used phind.com to help debug my code.
+I collaborated with John Young to get started. I also used phind.com to help debug my code.
 
 Tutorials used:
 
