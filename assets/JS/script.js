@@ -27,12 +27,21 @@ $(function () {
 	var today = dayjs();
 	$("#currentDay").text(today.format("dddd, MMM D, YYYY"));
 
-	function createTimeBlock(hour, relativeTime) {
-		var element = null;
-		//create HTML for timeblock. Use hour to change ids, data attributes and text content
+	for (var i = kStartHour; i <= kEndHour; i++) {
+		var relativeTime;
+		var currentHour = today.hour();
+		if (i < currentHour) {
+			relativeTime = "past";
+		} else if (i === currentHour) {
+			relativeTime = "present";
+		} else {
+			relativeTime = "future";
+		}
+		var timeBlock = $("<div>")
+			.attr("id", "hour-" + i)
+			.attr("class", "row time-block " + relativeTime)
+			.attr("data-hour", i);
 
-		return element;
+		$("#schedule").append(timeBlock);
 	}
-
-	function renderTimeBlocks(startHour, endHour, rootEl) {}
 });
