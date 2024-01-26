@@ -22,7 +22,7 @@ The client would like to be able to see a schedule of their day and make events,
 
 I created a daily planner which shows the current hour highlighted in one color, then past hours in a second color, and future hours in a third color. The planner also allows for saving things as events in each hour timeslot.
 
-![Screenshot of the planner](./assets/screenshot.png)
+![Screenshot of the planner](./assets/Screenshots/screenshot.png)
 
 [Link to the deployed application](https://ktetsuyama.github.io/Work-Day-Scheduler/)
 
