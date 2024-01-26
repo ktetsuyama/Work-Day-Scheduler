@@ -1,8 +1,6 @@
 $(function () {
 	var kStartHour = 9;
 	var kEndHour = 17;
-	var textArea = $("data-hour");
-	var kStorageKey = textArea.closest(".time-block").data("hour");
 
 	//Code to display the current date in the header of the page.
 	var today = dayjs();
