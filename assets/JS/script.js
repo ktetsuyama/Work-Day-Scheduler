@@ -1,4 +1,5 @@
 $(function () {
+	//variables for time can be easily adjusted to fit the user's actual schedule. Times are written in 24hr time format.
 	var kStartHour = 9;
 	var kEndHour = 17;
 
@@ -6,7 +7,7 @@ $(function () {
 	var today = dayjs();
 	$("#currentDay").text(today.format("dddd, MMM D, YYYY"));
 
-	// code that creates the timeblocks and sets the attributes, including if the time block is in the current hour or not
+	// code that creates the timeblocks and sets the attributes, including if the time block is in the current hour or not.
 	for (var i = kStartHour; i <= kEndHour; i++) {
 		var relativeTime;
 		var currentHour = today.hour();
@@ -24,7 +25,7 @@ $(function () {
 
 		$("#schedule").append(timeBlock);
 
-		//decides if the time displayed should have AM or PM appended and translates the time from 24hr to 12hr time
+		//decides if the time displayed should have AM or PM appended and translates the time from 24hr to 12hr time.
 		var AmPm;
 		if (i < 12) {
 			AmPm = i + "AM";
@@ -34,33 +35,33 @@ $(function () {
 			AmPm = i - 12 + "PM";
 		}
 
-		//creates the time text for the timeblock
+		//creates the time text for the timeblock.
 		var timeBlockTime = $("<div>")
 			.attr("class", "col-2 col-md-1 hour text-center py-3")
 			.text(AmPm);
 		$("#hour-" + i).append(timeBlockTime);
 
-		//creates the text area for the timeblock and displays text that has been saved in local storage
+		//creates the text area for the timeblock and displays text that has been saved in local storage.
 		var timeBlockTextArea = $("<textarea>")
 			.attr("class", "col-8 col-md-10 description")
 			.attr("rows", "3")
 			.val(localStorage.getItem(i));
 		$("#hour-" + i).append(timeBlockTextArea);
 
-		//creates the button to save the text in the text area
+		//creates the button to save the text in the text area.
 		var timeBlockButton = $("<button>")
 			.attr("class", "btn saveBtn col-2 col-md-1")
 			.attr("aria-label", "save");
 		$("#hour-" + i).append(timeBlockButton);
 
-		//listens for a click of the save button and saves the text to local storage
+		//listens for a click of the save button and saves the text to local storage.
 		timeBlockButton.on("click", function () {
 			var textInput = $(this).prev(".description").val();
 			var hour = $(this).parent().data("hour");
 			localStorage.setItem(hour, textInput);
 		});
 
-		//creates the icon of a 3.5" floppy disk to indicate the button is to be used to save the text in the text area
+		//creates the icon of a 3.5" floppy disk to indicate the button is to be used to save the text in the text area.
 		var timeBlockButtonSave = $("<i>")
 			.attr("class", "fas fa-save")
 			.attr("aria-hidden", "true");
