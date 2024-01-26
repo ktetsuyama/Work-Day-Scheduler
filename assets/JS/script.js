@@ -12,11 +12,6 @@ $(function () {
 	// time-block containing the button that was clicked? How might the id be
 	// useful when saving the description in local storage?
 	//
-	// TODO: Add code to apply the past, present, or future class to each time
-	// block by comparing the id to the current hour. HINTS: How can the id
-	// attribute of each time-block be used to conditionally add or remove the
-	// past, present, and future classes? How can Day.js be used to get the
-	// current hour in 24-hour time?
 
 	//
 	// TODO: Add code to get any user input that was saved in localStorage and set
@@ -26,7 +21,7 @@ $(function () {
 	//Code to display the current date in the header of the page.
 	var today = dayjs();
 	$("#currentDay").text(today.format("dddd, MMM D, YYYY"));
-
+	// code that creates the timeblocks and sets the attributes, including if the time block is in the current hour or not
 	for (var i = kStartHour; i <= kEndHour; i++) {
 		var relativeTime;
 		var currentHour = today.hour();
@@ -43,5 +38,32 @@ $(function () {
 			.attr("data-hour", i);
 
 		$("#schedule").append(timeBlock);
+		var AmPm;
+		if (i < 12) {
+			AmPm = i + "AM";
+		} else if (i === 12) {
+			AmPm = i + "PM";
+		} else {
+			AmPm = i - 12 + "PM";
+		}
+		var timeBlockTime = $("<div>")
+			.attr("class", "col-2 col-md-1 hour text-center py-3")
+			.text(AmPm);
+		$("#hour-" + i).append(timeBlockTime);
+
+		var timeBlockTextArea = $("<textarea>")
+			.attr("class", "col-8 col-md-10 description")
+			.attr("rows", "3");
+		$("#hour-" + i).append(timeBlockTextArea);
+
+		var timeBlockButton = $("<button>")
+			.attr("class", "btn saveBtn col-2 col-md-1")
+			.attr("aria-label", "save");
+		$("#hour-" + i).append(timeBlockButton);
+
+		var timeBlockButtonSave = $("<i>")
+			.attr("class", "fas fa-save")
+			.attr("aria-hidden", "true");
+		$(".btn saveBtn col-2 col-md-1").append(timeBlockButtonSave);
 	}
 });
