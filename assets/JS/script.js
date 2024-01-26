@@ -1,26 +1,11 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
 $(function () {
 	var kStartHour = 9;
 	var kEndHour = 17;
-	// TODO: Add a listener for click events on the save button. This code should
-	// use the id in the containing time-block as a key to save the user input in
-	// local storage. HINT: What does `this` reference in the click listener
-	// function? How can DOM traversal be used to get the "hour-x" id of the
-	// time-block containing the button that was clicked? How might the id be
-	// useful when saving the description in local storage?
-	//
 
-	//
-	// TODO: Add code to get any user input that was saved in localStorage and set
-	// the values of the corresponding textarea elements. HINT: How can the id
-	// attribute of each time-block be used to do this?
-	//
 	//Code to display the current date in the header of the page.
 	var today = dayjs();
 	$("#currentDay").text(today.format("dddd, MMM D, YYYY"));
+
 	// code that creates the timeblocks and sets the attributes, including if the time block is in the current hour or not
 	for (var i = kStartHour; i <= kEndHour; i++) {
 		var relativeTime;
@@ -38,6 +23,8 @@ $(function () {
 			.attr("data-hour", i);
 
 		$("#schedule").append(timeBlock);
+
+		//decides if the time displayed should have AM or PM appended and translates the time from 24hr to 12hr time
 		var AmPm;
 		if (i < 12) {
 			AmPm = i + "AM";
@@ -46,24 +33,36 @@ $(function () {
 		} else {
 			AmPm = i - 12 + "PM";
 		}
+
+		//creates the time text for the timeblock
 		var timeBlockTime = $("<div>")
 			.attr("class", "col-2 col-md-1 hour text-center py-3")
 			.text(AmPm);
 		$("#hour-" + i).append(timeBlockTime);
 
+		//creates the text area for the timeblock and displays text that has been saved in local storage
 		var timeBlockTextArea = $("<textarea>")
 			.attr("class", "col-8 col-md-10 description")
-			.attr("rows", "3");
+			.attr("rows", "3")
+			.val(localStorage.getItem(kStorageKey));
 		$("#hour-" + i).append(timeBlockTextArea);
 
+		//creates the button to save the text in the text area
 		var timeBlockButton = $("<button>")
 			.attr("class", "btn saveBtn col-2 col-md-1")
 			.attr("aria-label", "save");
 		$("#hour-" + i).append(timeBlockButton);
 
+		//listens for a click of the save button and saves the text to local storage
+		timeBlockButton.on("click", function () {
+			var textInput = $(this).prev(".description").val();
+			localStorage.setItem(kStorageKey, textInput);
+		});
+
+		//creates the icon of a 3.5" floppy disk to indicate the button is to be used to save the text in the text area
 		var timeBlockButtonSave = $("<i>")
 			.attr("class", "fas fa-save")
 			.attr("aria-hidden", "true");
-		$(".btn saveBtn col-2 col-md-1").append(timeBlockButtonSave);
+		$(".btn").append(timeBlockButtonSave);
 	}
 });
