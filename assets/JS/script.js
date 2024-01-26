@@ -1,6 +1,8 @@
 $(function () {
 	var kStartHour = 9;
 	var kEndHour = 17;
+	var textArea = $("data-hour");
+	var kStorageKey = textArea.closest(".time-block").data("hour");
 
 	//Code to display the current date in the header of the page.
 	var today = dayjs();
@@ -44,7 +46,7 @@ $(function () {
 		var timeBlockTextArea = $("<textarea>")
 			.attr("class", "col-8 col-md-10 description")
 			.attr("rows", "3")
-			.val(localStorage.getItem(kStorageKey));
+			.val(localStorage.getItem(i));
 		$("#hour-" + i).append(timeBlockTextArea);
 
 		//creates the button to save the text in the text area
@@ -56,13 +58,14 @@ $(function () {
 		//listens for a click of the save button and saves the text to local storage
 		timeBlockButton.on("click", function () {
 			var textInput = $(this).prev(".description").val();
-			localStorage.setItem(kStorageKey, textInput);
+			var hour = $(this).parent().data("hour");
+			localStorage.setItem(hour, textInput);
 		});
 
 		//creates the icon of a 3.5" floppy disk to indicate the button is to be used to save the text in the text area
 		var timeBlockButtonSave = $("<i>")
 			.attr("class", "fas fa-save")
 			.attr("aria-hidden", "true");
-		$(".btn").append(timeBlockButtonSave);
+		timeBlockButton.append(timeBlockButtonSave);
 	}
 });
